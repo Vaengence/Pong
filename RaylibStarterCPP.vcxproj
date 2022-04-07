@@ -19,7 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\GameManager.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\Point2D.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\GameManager.h" />
+    <ClInclude Include="include\Point2D.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -83,6 +89,8 @@
     <OutDir>$(ProjectDir)bin</OutDir>
     <IntDir>$(ProjectDir)intermediate\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_db</TargetName>
+    <IncludePath>$(ProjectDir)include;$(IncludePath)</IncludePath>
+    <SourcePath>$(ProjectDir)source;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -92,6 +100,8 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(ProjectDir)bin</OutDir>
     <IntDir>$(ProjectDir)intermediate\$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>$(ProjectDir)include;$(IncludePath)</IncludePath>
+    <SourcePath>$(ProjectDir)source;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -120,7 +130,7 @@
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <CompileAs>CompileAsCpp</CompileAs>
-      <AdditionalIncludeDirectories>$(ProjectDir)support\Raygui\src;$(ProjectDir)support\Raylib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)support\Raygui\src;$(ProjectDir)include;$(ProjectDir)support\Raylib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -162,7 +172,7 @@
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <CompileAs>CompileAsCpp</CompileAs>
-      <AdditionalIncludeDirectories>$(ProjectDir)support\Raygui\src;$(ProjectDir)support\Raylib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)support\Raygui\src;$(ProjectDir)include;$(ProjectDir)support\Raylib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
