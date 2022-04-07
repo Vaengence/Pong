@@ -1,0 +1,28 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>RaylibStarterCPP</Name>
+    <Description>Sets up basic program</Description>
+    <ProjectType>VC</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>RaylibStarterCPP</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>__TemplateIcon.jpg</Icon>
+    <PreviewImage>__PreviewImage.jpg</PreviewImage>
+    <LanguageTag>cpp</LanguageTag>
+    <PlatformTag>My Platform</PlatformTag>
+    <PlatformTag>windows</PlatformTag>
+    <ProjectTypeTag>console</ProjectTypeTag>
+    <ProjectTypeTag>games</ProjectTypeTag>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="RaylibStarterCPP.vcxproj" File="RaylibStarterCPP.vcxproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="false" TargetFileName="$projectname$.vcxproj.filters">RaylibStarterCPP.vcxproj.filters</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="main.cpp">main.cpp</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>
