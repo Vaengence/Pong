@@ -11,7 +11,12 @@ ResourceManager::ResourceManager()
 
 void ResourceManager::InitialisePlayingScreen()
 {
-	InitWindow(this->screenWidth, this->screenHeight, this->title);
+	InitWindow(this->screenWidth, this->screenHeight, *title);
 
 	SetTargetFPS(60);
+}
+
+ResourceManager::~ResourceManager()
+{
+
 }
