@@ -6,7 +6,7 @@ class Point2D
 {
 public:
 
-	Point2D(float x, float y);
+	Point2D(float x = 0.0f, float y = 0.0f);
 	Point2D(const Point2D& Point2DToCopy);
 	const Point2D operator+(const Point2D& Point2DToAdd);
 	Point2D& operator+=(const Point2D& Point2DToAdd);

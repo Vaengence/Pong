@@ -6,7 +6,7 @@
 class PlayerSprite : public BaseSprite
 {
 public:
-	PlayerSprite();
+	PlayerSprite(const char* SpriteImage);
 	virtual void Update();
 	virtual void Draw();
 };

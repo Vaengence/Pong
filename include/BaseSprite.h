@@ -3,6 +3,7 @@
 
 #include <raylib.h>
 #include "Point2D.h"
+#include "Rect.h"
 
 class BaseSprite
 {
@@ -18,6 +19,7 @@ private:
 	Texture2D rtSprite;
 	Point2D oPosition;
 	Point2D oVelocity;
+	Rect oCollisionBox;
 
 };
 

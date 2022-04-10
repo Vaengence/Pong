@@ -1,12 +1,11 @@
 #include "Point2D.h"
 
-
-Point2D::Point2D(float x = 0.0f, float y = 0.0f)
-	: x{x}
-	, y{y}
+Point2D::Point2D(float x, float y)
 {
-
+	this->x = x;
+	this->y = y;
 }
+
 Point2D::Point2D(const Point2D& Point2DToCopy)
 {
 	x = Point2DToCopy.x;

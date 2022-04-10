@@ -1,7 +1,6 @@
 #include "Rect.h"
 
-
-Rect::Rect(float left = 0.0f, float right = 0.0f, float top = 0.0f, float bottom = 0.0f)
+Rect::Rect(float left, float right, float top, float bottom)
 {
 	this->left = left, this->right = right, this->top = top, this->bottom = bottom;
 }
