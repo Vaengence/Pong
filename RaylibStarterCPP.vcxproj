@@ -19,12 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\BaseSprite.cpp" />
     <ClCompile Include="source\GameManager.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\Point2D.cpp" />
     <ClCompile Include="source\ResourceManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\BaseSprite.h" />
     <ClInclude Include="include\GameManager.h" />
     <ClInclude Include="include\Point2D.h" />
     <ClInclude Include="include\ResourceManager.h" />
