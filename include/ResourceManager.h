@@ -16,8 +16,7 @@ public:
 	~ResourceManager();
 	void InitialisePlayingScreen();
 	void ImportData();
-	void DrawSprites();
-	std::vector<BaseSprite*> GetSprites();
+	const std::vector<BaseSprite*> GetSprites();
 
 
 private:

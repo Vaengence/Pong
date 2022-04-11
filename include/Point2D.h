@@ -17,6 +17,8 @@ public:
 	bool operator!=(const Point2D& right) const;
 	float getXPos();
 	float getYPos();
+	void setXPos(float x);
+	void setYPos(float y);
 
 private:
 

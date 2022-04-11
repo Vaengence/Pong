@@ -57,22 +57,19 @@ void ResourceManager::ImportData()
 		{
 		case Object::PLAYER_ONE_SPRITE:
 			{
-				PlayerSprite a = PlayerSprite(sLocationTemp.c_str(), input);
-				this->vSpriteArray.push_back(&a);
+				this->vSpriteArray.push_back(new PlayerSprite(sLocationTemp.c_str(), input));
 				break;
 			}
 
 		case Object::PLAYER_TWO_SPRITE:
 			{
-				BaseSprite b = PlayerSprite(sLocationTemp.c_str(), input);
-				this->vSpriteArray.push_back(&b);
+				this->vSpriteArray.push_back(new PlayerSprite(sLocationTemp.c_str(), input));
 				break;
 			}
 
 		case Object::BALL:
 			{
-				BaseSprite c = PlayerSprite(sLocationTemp.c_str(), input);
-				this->vSpriteArray.push_back(&c);
+				this->vSpriteArray.push_back(new PlayerSprite(sLocationTemp.c_str(), input));
 				break;
 			}
 
@@ -84,16 +81,8 @@ void ResourceManager::ImportData()
 
 }
 
-void ResourceManager::DrawSprites()
-{
 
-	//for (std::vector<BaseSprite*>::iterator iter = this->vSpriteArray.begin(); iter != this->vSpriteArray.end(); iter++)
-	//{
-	//	(*iter)->Draw();
-	//}
-}
-
-std::vector<BaseSprite*> ResourceManager::GetSprites()
+const std::vector<BaseSprite*> ResourceManager::GetSprites()
 {
 	return this->vSpriteArray;
 }

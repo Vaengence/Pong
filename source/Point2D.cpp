@@ -68,3 +68,13 @@ float Point2D::getYPos()
 {
 	return this->y;
 }
+
+void Point2D::setXPos(float x)
+{
+	this->x = x;
+}
+
+void Point2D::setYPos(float y)
+{
+	this->y = y;
+}

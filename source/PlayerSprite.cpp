@@ -5,7 +5,11 @@ PlayerSprite::PlayerSprite(const char* SpriteImage, Object oObjectID)
 {
 	if (oObjectID == Object::PLAYER_ONE_SPRITE)
 	{
-		Point2D oStartPosition = (GetScreenWidth() / 2, GetScreenHeight() + 20);
+		Point2D oStartPosition;
+		int x = (GetScreenWidth() / 2) - this->GetTexture().width / 2;
+		int y = (GetScreenHeight() - 50);
+		oStartPosition.setXPos(x);
+		oStartPosition.setYPos(y);
 		this->SetPosition(oStartPosition);
 	}
 }

@@ -30,7 +30,12 @@ void GameManager::GameLoop()
 
 void GameManager::Update()
 {
-    
+    std::vector<BaseSprite*> Sprites = oResources->GetSprites();
+
+    for (std::vector<BaseSprite*>::iterator iter = Sprites.begin(); iter != Sprites.end(); iter++)
+    {
+        (*iter)->Update();
+    }
 }
 
 void GameManager::Draw()
