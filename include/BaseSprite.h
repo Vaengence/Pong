@@ -14,6 +14,8 @@ public:
 	virtual void Update();
 	virtual void Draw();
 	Texture GetTexture();
+	void SetPosition(Point2D oNewPosition);
+	Point2D GetPosition();
 
 private:
 

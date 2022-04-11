@@ -15,6 +15,8 @@ public:
 	Point2D operator=(const Point2D& Point2DToAssign);
 	bool operator==(const Point2D& Point2DToCompare) const;
 	bool operator!=(const Point2D& right) const;
+	float getXPos();
+	float getYPos();
 
 private:
 

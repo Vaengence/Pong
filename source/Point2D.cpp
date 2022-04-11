@@ -58,3 +58,13 @@ bool Point2D::operator!=(const Point2D& right) const
 {
 	return !(*this == right);
 }
+
+float Point2D::getXPos()
+{
+	return this->x;
+}
+
+float Point2D::getYPos()
+{
+	return this->y;
+}

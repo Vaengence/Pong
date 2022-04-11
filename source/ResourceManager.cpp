@@ -57,7 +57,7 @@ void ResourceManager::ImportData()
 		{
 		case Object::PLAYER_ONE_SPRITE:
 			{
-				BaseSprite a = PlayerSprite(sLocationTemp.c_str(), input);
+				PlayerSprite a = PlayerSprite(sLocationTemp.c_str(), input);
 				this->vSpriteArray.push_back(&a);
 				break;
 			}
@@ -82,6 +82,20 @@ void ResourceManager::ImportData()
 
 	ifsSprites.close();
 
+}
+
+void ResourceManager::DrawSprites()
+{
+
+	//for (std::vector<BaseSprite*>::iterator iter = this->vSpriteArray.begin(); iter != this->vSpriteArray.end(); iter++)
+	//{
+	//	(*iter)->Draw();
+	//}
+}
+
+std::vector<BaseSprite*> ResourceManager::GetSprites()
+{
+	return this->vSpriteArray;
 }
 
 ResourceManager::~ResourceManager()
