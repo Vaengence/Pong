@@ -1,8 +1,10 @@
 #include "BaseSprite.h"
 
-BaseSprite::BaseSprite(const char* sFilePath)
+BaseSprite::BaseSprite(const char* sFilePath, Object oObjectID)
+	: rtSprite{ LoadTexture(sFilePath) }
+	, oObjectID{ oObjectID }
 {
-	this->rtSprite = LoadTexture(sFilePath);
+	;
 }
 
 void BaseSprite::Update()

@@ -1,26 +1,31 @@
 #ifndef _RESOURCEMANAGER_H_
 #define _RESOURCEMANAGER_H_
 
+#include <vector>
+#include <string>
+#include <fstream>
+#include "BaseSprite.h"
+#include "Enums.h"
+
+class BaseSprite;
+
 class ResourceManager
 {
 public:
 	ResourceManager();
 	~ResourceManager();
 	void InitialisePlayingScreen();
-
-	enum Object
-	{
-		PLAYER_ONE_SPRITE,
-		PLAYER_TWO_SPRITE,
-		BALL
-	};
+	void ImportData();
 
 
 private:
 
 	int screenWidth;
 	int screenHeight;
-	const char* title[];
+	std::string gameTitle;
+	std::string spritesFile;
+	std::vector<BaseSprite*> vSpriteArray;
+	
 };
 
 #endif // !_RESOURCEMANAGER_H_

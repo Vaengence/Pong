@@ -1,6 +1,4 @@
 #include "GameManager.h"
-#include "ResourceManager.h"
-#include <raylib.h>
 
 GameManager::GameManager()
 {
@@ -11,6 +9,7 @@ void GameManager::StartGame()
 {
     this->oResources = new ResourceManager();
     oResources->InitialisePlayingScreen();
+    oResources->ImportData();
 
     GameLoop();
 
@@ -41,6 +40,8 @@ void GameManager::Draw()
 
     EndDrawing();
 }
+
+
 
 GameManager::~GameManager()
 {
