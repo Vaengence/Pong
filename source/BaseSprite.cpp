@@ -32,3 +32,18 @@ Texture BaseSprite::GetTexture()
 	return this->rtSprite;
 }
 
+Point2D BaseSprite::GetVelocity()
+{
+	return this->oVelocity;
+}
+
+void BaseSprite::SetVelocity(Point2D oNewVelocity)
+{
+	this->oVelocity = oNewVelocity;
+}
+
+Object BaseSprite::GetObjectID()
+{
+	return this->oObjectID;
+}
+

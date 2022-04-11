@@ -11,11 +11,16 @@ class BaseSprite
 public:
 
 	BaseSprite(const char* sFilePath, Object oObjectID );
-	virtual void Update();
-	virtual void Draw();
 	Texture GetTexture();
 	void SetPosition(Point2D oNewPosition);
 	Point2D GetPosition();
+	Point2D GetVelocity();
+	void SetVelocity(Point2D oNewVelocity);
+	Object GetObjectID();
+
+
+	virtual void Update();
+	virtual void Draw();
 
 private:
 
