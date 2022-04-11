@@ -29,6 +29,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BaseSprite.h" />
+    <ClInclude Include="include\Enums.h" />
     <ClInclude Include="include\GameManager.h" />
     <ClInclude Include="include\PlayerSprite.h" />
     <ClInclude Include="include\Point2D.h" />

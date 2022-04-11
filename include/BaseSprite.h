@@ -4,12 +4,13 @@
 #include <raylib.h>
 #include "Point2D.h"
 #include "Rect.h"
+#include "Enums.h"
 
 class BaseSprite
 {
 public:
 
-	BaseSprite(const char* sFilePath );
+	BaseSprite(const char* sFilePath, Object oObjectID );
 	virtual void Update();
 	virtual void Draw();
 	Texture GetTexture();
@@ -20,6 +21,7 @@ private:
 	Point2D oPosition;
 	Point2D oVelocity;
 	Rect oCollisionBox;
+	Object oObjectID;
 
 };
 

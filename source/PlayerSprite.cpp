@@ -1,7 +1,7 @@
 #include "PlayerSprite.h"
 
-PlayerSprite::PlayerSprite(const char* SpriteImage)
-	: BaseSprite(SpriteImage)
+PlayerSprite::PlayerSprite(const char* SpriteImage, Object oObjectID)
+	: BaseSprite(SpriteImage, oObjectID)
 {
 
 }

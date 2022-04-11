@@ -2,6 +2,7 @@
 #define _GAMEMANAGER_H_
 
 #include "ResourceManager.h"
+#include <raylib.h>
 
 class GameManager
 {
