@@ -17,10 +17,10 @@ public:
 	Point2D GetVelocity();
 	void SetVelocity(Point2D oNewVelocity);
 	Object GetObjectID();
-
+	bool CollissionCheck(Point2D *oOtherPosition, Rect *oOtherCollissionBox);
+	void Draw();
 
 	virtual void Update();
-	virtual void Draw();
 
 private:
 

@@ -14,7 +14,7 @@ void BaseSprite::Update()
 
 void BaseSprite::Draw()
 {
-
+	DrawTexture(this->GetTexture(), this->GetPosition().getXPos(), this->GetPosition().getYPos(), RAYWHITE);
 }
 
 void BaseSprite::SetPosition(Point2D oNewPosition)
@@ -45,5 +45,18 @@ void BaseSprite::SetVelocity(Point2D oNewVelocity)
 Object BaseSprite::GetObjectID()
 {
 	return this->oObjectID;
+}
+
+bool BaseSprite::CollissionCheck(Point2D *oOtherPosition, Rect *oOtherCollissionBox)
+{
+	if ((this->GetPosition().getXPos() + this->oCollisionBox.right)  >= (oOtherPosition->getXPos() - oOtherCollissionBox->left) &&
+		(this->GetPosition().getXPos() - this->oCollisionBox.left) <= (oOtherPosition->getXPos() + oOtherCollissionBox->right) &&
+		(this->GetPosition().getYPos() - this->oCollisionBox.bottom) <= (oOtherPosition->getYPos() + oOtherCollissionBox->top) &&
+		(this->GetPosition().getYPos() + this->oCollisionBox.top) >= (oOtherPosition->getYPos() - oOtherCollissionBox->bottom))
+	{
+		return true;
+	}
+
+	return false;
 }
 

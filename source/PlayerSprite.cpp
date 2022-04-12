@@ -106,8 +106,3 @@ void PlayerSprite::Update()
 		this->SetPosition(Point2D(GetScreenWidth() - this->GetTexture().width, this->GetPosition().getYPos()));
 	}
 }
-
-void PlayerSprite::Draw()
-{
-	DrawTexture(this->GetTexture(), this->GetPosition().getXPos(), this->GetPosition().getYPos(), RAYWHITE);
-}

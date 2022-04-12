@@ -8,8 +8,8 @@ class PlayerSprite : public BaseSprite
 {
 public:
 	PlayerSprite(const char* SpriteImage, Object oObjectID);
+
 	virtual void Update();
-	virtual void Draw();
 
 
 };
