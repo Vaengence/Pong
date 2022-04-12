@@ -4,7 +4,7 @@
 #include <raylib.h>
 #include "Point2D.h"
 #include "Rect.h"
-#include "Enums.h"
+#include "Helper.h"
 
 class BaseSprite
 {

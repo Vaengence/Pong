@@ -56,7 +56,7 @@
     <ClInclude Include="include\Rect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Enums.h">
+    <ClInclude Include="include\Helper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

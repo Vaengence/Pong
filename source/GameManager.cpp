@@ -2,14 +2,15 @@
 
 GameManager::GameManager()
 {
-
+    this->oResources = new ResourceManager();
+    this->oCurrentGameState = GameState::TITLE_SCREEN;
+    oResources->ImportData();
 }
 
 void GameManager::StartGame()
 {
-    this->oResources = new ResourceManager();
+
     oResources->InitialisePlayingScreen();
-    oResources->ImportData();
 
     GameLoop();
 

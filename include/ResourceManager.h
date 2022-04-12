@@ -5,7 +5,7 @@
 #include <string>
 #include <fstream>
 #include "BaseSprite.h"
-#include "Enums.h"
+#include "Helper.h"
 
 class BaseSprite;
 

@@ -2,7 +2,7 @@
 #define _PLAYERSPRITE_H_
 
 #include "BaseSprite.h"
-#include "Enums.h"
+#include "Helper.h"
 
 class PlayerSprite : public BaseSprite
 {

@@ -3,6 +3,7 @@
 
 #include "ResourceManager.h"
 #include <raylib.h>
+#include "Helper.h"
 
 class GameManager
 {
@@ -18,6 +19,7 @@ public:
 private:
 
 	ResourceManager *oResources;
+	GameState oCurrentGameState;
 
 };
 
