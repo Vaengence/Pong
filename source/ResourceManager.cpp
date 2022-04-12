@@ -3,6 +3,7 @@
 #include <iostream>
 #include <sstream>
 #include "PlayerSprite.h"
+#include "BallSprite.h"
 
 
 ResourceManager::ResourceManager()
@@ -69,7 +70,7 @@ void ResourceManager::ImportData()
 
 		case Object::BALL:
 			{
-				this->vSpriteArray.push_back(new PlayerSprite(sLocationTemp.c_str(), input));
+				this->vSpriteArray.push_back(new BallSprite(sLocationTemp.c_str(), input));
 				break;
 			}
 
@@ -85,6 +86,16 @@ void ResourceManager::ImportData()
 const std::vector<BaseSprite*> ResourceManager::GetSprites()
 {
 	return this->vSpriteArray;
+}
+
+float ResourceManager::RandomGenerator(float fLow, float fHigh)
+{
+	std::random_device randomDevice;
+	std::default_random_engine randomGenerator(randomDevice());
+	std::uniform_real_distribution<float> distribution(fLow, fHigh);
+
+	return distribution(randomDevice);
+
 }
 
 ResourceManager::~ResourceManager()

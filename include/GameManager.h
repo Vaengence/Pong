@@ -14,6 +14,7 @@ public:
 	void StartGame();
 	void GameLoop();
 	void Update();
+	bool CollissionCheck();
 	void Draw();
 
 private:

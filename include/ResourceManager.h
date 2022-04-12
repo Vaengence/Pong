@@ -6,6 +6,7 @@
 #include <fstream>
 #include "BaseSprite.h"
 #include "Helper.h"
+#include <random>
 
 class BaseSprite;
 
@@ -17,6 +18,7 @@ public:
 	void InitialisePlayingScreen();
 	void ImportData();
 	const std::vector<BaseSprite*> GetSprites();
+	float RandomGenerator(float fLow, float fHigh);
 
 
 private:
@@ -26,7 +28,6 @@ private:
 	std::string gameTitle;
 	std::string spritesFile;
 	std::vector<BaseSprite*> vSpriteArray;
-	
 };
 
 #endif // !_RESOURCEMANAGER_H_
