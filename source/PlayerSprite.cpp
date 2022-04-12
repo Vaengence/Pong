@@ -13,38 +13,83 @@ PlayerSprite::PlayerSprite(const char* SpriteImage, Object oObjectID)
 		oStartPosition.setYPos(y);
 		this->SetPosition(oStartPosition);
 	}
+
+	if (oObjectID == Object::PLAYER_TWO_SPRITE)
+	{
+		Point2D oStartPosition;
+		int x = (GetScreenWidth() / 2) - this->GetTexture().width / 2;
+		int y = (50);
+		oStartPosition.setXPos(x);
+		oStartPosition.setYPos(y);
+		this->SetPosition(oStartPosition);
+	}
 }
 
 
 void PlayerSprite::Update()
 {
-	// Controls for Left and Right movement of Both Players
-	if (IsKeyDown(KEY_A))
+	// Controls for Left and Right movement of Player one
+
+	if (this->GetObjectID() == Object::PLAYER_ONE_SPRITE)
 	{
-		Point2D oCurrentVelocity = this->GetVelocity();
-		oCurrentVelocity.setXPos(-3.0f);
-		this->SetVelocity(oCurrentVelocity);
+		if (IsKeyDown(KEY_A))
+		{
+			Point2D oCurrentVelocity = this->GetVelocity();
+			oCurrentVelocity.setXPos(-3.0f);
+			this->SetVelocity(oCurrentVelocity);
+		}
+
+		if (IsKeyReleased(KEY_A))
+		{
+			Point2D oCurrentVelocity = this->GetVelocity();
+			oCurrentVelocity.setXPos(0.0f);
+			this->SetVelocity(oCurrentVelocity);
+		}
+
+		if (IsKeyDown(KEY_D))
+		{
+			Point2D oCurrentVelocity = this->GetVelocity();
+			oCurrentVelocity.setXPos(3.0f);
+			this->SetVelocity(oCurrentVelocity);
+		}
+
+		if (IsKeyReleased(KEY_D))
+		{
+			Point2D oCurrentVelocity = this->GetVelocity();
+			oCurrentVelocity.setXPos(0.0f);
+			this->SetVelocity(oCurrentVelocity);
+		}
 	}
 
-	if (IsKeyReleased(KEY_A))
+	if (this->GetObjectID() == Object::PLAYER_TWO_SPRITE)
 	{
-		Point2D oCurrentVelocity = this->GetVelocity();
-		oCurrentVelocity.setXPos(0.0f);
-		this->SetVelocity(oCurrentVelocity);
-	}
+		if (IsKeyDown(KEY_LEFT))
+		{
+			Point2D oCurrentVelocity = this->GetVelocity();
+			oCurrentVelocity.setXPos(-3.0f);
+			this->SetVelocity(oCurrentVelocity);
+		}
 
-	if (IsKeyDown(KEY_D))
-	{
-		Point2D oCurrentVelocity = this->GetVelocity();
-		oCurrentVelocity.setXPos(3.0f);
-		this->SetVelocity(oCurrentVelocity);
-	}
+		if (IsKeyReleased(KEY_LEFT))
+		{
+			Point2D oCurrentVelocity = this->GetVelocity();
+			oCurrentVelocity.setXPos(0.0f);
+			this->SetVelocity(oCurrentVelocity);
+		}
 
-	if (IsKeyReleased(KEY_D))
-	{
-		Point2D oCurrentVelocity = this->GetVelocity();
-		oCurrentVelocity.setXPos(0.0f);
-		this->SetVelocity(oCurrentVelocity);
+		if (IsKeyDown(KEY_RIGHT))
+		{
+			Point2D oCurrentVelocity = this->GetVelocity();
+			oCurrentVelocity.setXPos(3.0f);
+			this->SetVelocity(oCurrentVelocity);
+		}
+
+		if (IsKeyReleased(KEY_RIGHT))
+		{
+			Point2D oCurrentVelocity = this->GetVelocity();
+			oCurrentVelocity.setXPos(0.0f);
+			this->SetVelocity(oCurrentVelocity);
+		}
 	}
 
 	//Sets position of new location dependant on button presses above
