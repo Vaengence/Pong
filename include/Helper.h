@@ -1,4 +1,5 @@
 #pragma once
+#include <random>
 
 enum class Object
 {
@@ -10,7 +11,9 @@ enum class Object
 enum class GameState
 {
 	TITLE_SCREEN = 0,
-	PLAYING = 0,
-	GAME_OVER = 0,
-	HIGH_SCORES = 0
+	PLAYING = 1,
+	GAME_OVER = 2,
+	HIGH_SCORES = 3,
+	EXIT = 4
 };
+

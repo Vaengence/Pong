@@ -4,13 +4,14 @@ GameManager::GameManager()
 {
     this->oResources = new ResourceManager();
     this->oCurrentGameState = GameState::TITLE_SCREEN;
-    oResources->ImportData();
+    
 }
 
 void GameManager::StartGame()
 {
 
     oResources->InitialisePlayingScreen();
+    oResources->ImportData();
 
     GameLoop();
 
@@ -21,8 +22,14 @@ void GameManager::StartGame()
 void GameManager::GameLoop()
 {
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (this->oCurrentGameState != GameState::EXIT)    // Detect window close button or ESC key
     {
+        if (WindowShouldClose())
+        {
+            this->oCurrentGameState = GameState::EXIT;
+            break;
+        }
+
         Update();
         Draw();
     }
@@ -52,6 +59,11 @@ void GameManager::Draw()
     }
 
     EndDrawing();
+}
+
+bool GameManager::CollissionCheck()
+{
+    return false;
 }
 
 
