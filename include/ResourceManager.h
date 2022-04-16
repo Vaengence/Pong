@@ -19,7 +19,6 @@ public:
 	~ResourceManager();
 	void InitialisePlayingScreen();
 	void ImportData(std::vector<PlayerSprite*> *oPlayerSprites, std::vector<BallSprite*> *oBallSprites);
-	//std::vector<BaseSprite*> GetSprites();
 	float RandomGenerator();
 
 

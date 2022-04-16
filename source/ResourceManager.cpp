@@ -84,10 +84,6 @@ void ResourceManager::ImportData(std::vector<PlayerSprite*>* oPlayerSprites, std
 }
 
 
-//std::vector<BaseSprite*> ResourceManager::GetSprites()
-//{
-//	return this->vSpriteArray;
-//}
 
 float ResourceManager::RandomGenerator()
 {
