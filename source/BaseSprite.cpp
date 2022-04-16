@@ -3,8 +3,9 @@
 BaseSprite::BaseSprite(const char* sFilePath, Object oObjectID)
 	: rtSprite{ LoadTexture(sFilePath) }
 	, oObjectID{ oObjectID }
+	, oCollisionBox{Rect {(float)rtSprite.height, (float)rtSprite.height, (float)rtSprite.width, (float)rtSprite.width}}
 {
-	;
+	
 }
 
 void BaseSprite::Update()

@@ -23,7 +23,7 @@ void ResourceManager::InitialisePlayingScreen()
 
 }
 
-void ResourceManager::ImportData()
+void ResourceManager::ImportData(std::vector<PlayerSprite*>* oPlayerSprites, std::vector<BallSprite*>* oBallSprites)
 {
 	//Code to read in Sprite Data. Not so useful with three sprites, intended to be expandable. 
 	std::ifstream ifsSprites;
@@ -58,19 +58,20 @@ void ResourceManager::ImportData()
 		{
 		case Object::PLAYER_ONE_SPRITE:
 			{
-				this->vSpriteArray.push_back(new PlayerSprite(sLocationTemp.c_str(), input));
+				oPlayerSprites->push_back(new PlayerSprite(sLocationTemp.c_str(), input));
 				break;
 			}
 
 		case Object::PLAYER_TWO_SPRITE:
 			{
-				this->vSpriteArray.push_back(new PlayerSprite(sLocationTemp.c_str(), input));
+				oPlayerSprites->push_back(new PlayerSprite(sLocationTemp.c_str(), input));
 				break;
 			}
 
 		case Object::BALL:
 			{
-				this->vSpriteArray.push_back(new BallSprite(sLocationTemp.c_str(), input));
+			Point2D oInitVelocity = { RandomGenerator(), RandomGenerator() };
+				oBallSprites->push_back(new BallSprite(sLocationTemp.c_str(), input, oInitVelocity));
 				break;
 			}
 
@@ -83,16 +84,16 @@ void ResourceManager::ImportData()
 }
 
 
-const std::vector<BaseSprite*> ResourceManager::GetSprites()
-{
-	return this->vSpriteArray;
-}
+//std::vector<BaseSprite*> ResourceManager::GetSprites()
+//{
+//	return this->vSpriteArray;
+//}
 
-float ResourceManager::RandomGenerator(float fLow, float fHigh)
+float ResourceManager::RandomGenerator()
 {
 	std::random_device randomDevice;
 	std::default_random_engine randomGenerator(randomDevice());
-	std::uniform_real_distribution<float> distribution(fLow, fHigh);
+	std::uniform_real_distribution<float> distribution(-3.0f, 3.0f);
 
 	return distribution(randomDevice);
 

@@ -9,9 +9,9 @@ GameManager::GameManager()
 
 void GameManager::StartGame()
 {
-
+    
     oResources->InitialisePlayingScreen();
-    oResources->ImportData();
+    oResources->ImportData(&vPlayerSpriteArray, &vBallSpriteArray);
 
     GameLoop();
 
@@ -38,9 +38,13 @@ void GameManager::GameLoop()
 
 void GameManager::Update()
 {
-    std::vector<BaseSprite*> Sprites = oResources->GetSprites();
 
-    for (std::vector<BaseSprite*>::iterator iter = Sprites.begin(); iter != Sprites.end(); iter++)
+    for (std::vector<PlayerSprite*>::iterator iter = vPlayerSpriteArray.begin(); iter != vPlayerSpriteArray.end(); iter++)
+    {
+        (*iter)->Update();
+    }
+
+    for (std::vector<BallSprite*>::iterator iter = vBallSpriteArray.begin(); iter != vBallSpriteArray.end(); iter++)
     {
         (*iter)->Update();
     }
@@ -51,9 +55,12 @@ void GameManager::Draw()
     BeginDrawing();
     ClearBackground(BLACK);
 
-    std::vector<BaseSprite*> Sprites = oResources->GetSprites();
+    for (std::vector<PlayerSprite*>::iterator iter = vPlayerSpriteArray.begin(); iter != vPlayerSpriteArray.end(); iter++)
+    {
+        (*iter)->Draw();
+    }
 
-    for (std::vector<BaseSprite*>::iterator iter = Sprites.begin(); iter != Sprites.end(); iter++)
+    for (std::vector<BallSprite*>::iterator iter = vBallSpriteArray.begin(); iter != vBallSpriteArray.end(); iter++)
     {
         (*iter)->Draw();
     }
@@ -63,6 +70,12 @@ void GameManager::Draw()
 
 bool GameManager::CollissionCheck()
 {
+    //std::vector<BaseSprite*> oCurrentSpriteArray = oResources->GetSprites();
+    //std::vector<BaseSprite*>::iterator oCurrentBall = std::find(oCurrentSpriteArray.begin(), oCurrentSpriteArray.end(), Object::BALL);
+    //std::vector<BaseSprite*>::iterator oCurrentPlayerOne = std::find(oCurrentSpriteArray.begin(), oCurrentSpriteArray.end(), Object::PLAYER_ONE_SPRITE);
+    //std::vector<BaseSprite*>::iterator oCurrentPlayerTwo = std::find(oCurrentSpriteArray.begin(), oCurrentSpriteArray.end(), Object::PLAYER_TWO_SPRITE);
+
+
     return false;
 }
 

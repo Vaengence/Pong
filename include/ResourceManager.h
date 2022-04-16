@@ -7,6 +7,8 @@
 #include "BaseSprite.h"
 #include "Helper.h"
 #include <random>
+#include "PlayerSprite.h"
+#include "BallSprite.h"
 
 class BaseSprite;
 
@@ -16,9 +18,9 @@ public:
 	ResourceManager();
 	~ResourceManager();
 	void InitialisePlayingScreen();
-	void ImportData();
-	const std::vector<BaseSprite*> GetSprites();
-	float RandomGenerator(float fLow, float fHigh);
+	void ImportData(std::vector<PlayerSprite*> *oPlayerSprites, std::vector<BallSprite*> *oBallSprites);
+	//std::vector<BaseSprite*> GetSprites();
+	float RandomGenerator();
 
 
 private:
@@ -27,7 +29,6 @@ private:
 	int screenHeight;
 	std::string gameTitle;
 	std::string spritesFile;
-	std::vector<BaseSprite*> vSpriteArray;
 };
 
 #endif // !_RESOURCEMANAGER_H_
