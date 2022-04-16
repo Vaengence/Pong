@@ -48,16 +48,9 @@ Object BaseSprite::GetObjectID()
 	return this->oObjectID;
 }
 
-bool BaseSprite::CollissionCheck(Point2D *oOtherPosition, Rect *oOtherCollissionBox)
+Rect BaseSprite::GetCollisionBox()
 {
-	if ((this->GetPosition().getXPos() + this->oCollisionBox.right)  >= (oOtherPosition->getXPos() - oOtherCollissionBox->left) &&
-		(this->GetPosition().getXPos() - this->oCollisionBox.left) <= (oOtherPosition->getXPos() + oOtherCollissionBox->right) &&
-		(this->GetPosition().getYPos() - this->oCollisionBox.bottom) <= (oOtherPosition->getYPos() + oOtherCollissionBox->top) &&
-		(this->GetPosition().getYPos() + this->oCollisionBox.top) >= (oOtherPosition->getYPos() - oOtherCollissionBox->bottom))
-	{
-		return true;
-	}
-
-	return false;
+	return this->oCollisionBox;
 }
+
 

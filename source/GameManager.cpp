@@ -31,6 +31,7 @@ void GameManager::GameLoop()
         }
 
         Update();
+        RunCollisions();
         Draw();
     }
 
@@ -68,16 +69,40 @@ void GameManager::Draw()
     EndDrawing();
 }
 
-bool GameManager::CollissionCheck()
+void GameManager::RunCollisions()
 {
-    //std::vector<BaseSprite*> oCurrentSpriteArray = oResources->GetSprites();
-    //std::vector<BaseSprite*>::iterator oCurrentBall = std::find(oCurrentSpriteArray.begin(), oCurrentSpriteArray.end(), Object::BALL);
-    //std::vector<BaseSprite*>::iterator oCurrentPlayerOne = std::find(oCurrentSpriteArray.begin(), oCurrentSpriteArray.end(), Object::PLAYER_ONE_SPRITE);
-    //std::vector<BaseSprite*>::iterator oCurrentPlayerTwo = std::find(oCurrentSpriteArray.begin(), oCurrentSpriteArray.end(), Object::PLAYER_TWO_SPRITE);
+    for (std::vector<PlayerSprite*>::iterator playerIterator = vPlayerSpriteArray.begin(); playerIterator != vPlayerSpriteArray.end(); playerIterator++)
+    {
+        for (std::vector<BallSprite*>::iterator ballIterator = vBallSpriteArray.begin(); ballIterator != vBallSpriteArray.end(); ballIterator++)
+        {
+
+            if (CollisionCheck(*playerIterator, *ballIterator))
+            {
+                BallSprite* oTempBall = *ballIterator;
+
+                Point2D oCurrentVelocity = oTempBall->GetVelocity();
+
+                oCurrentVelocity.setYPos(oCurrentVelocity.getYPos() * -1);
+                oTempBall->SetVelocity(oCurrentVelocity);
+            }
+        }
+    }
+}
+
+bool GameManager::CollisionCheck(PlayerSprite* oCurrentPlayer, BallSprite* oCurrentBall)
+{
+    if ((oCurrentPlayer->GetPosition().getXPos() + oCurrentPlayer->GetCollisionBox().top / 2.0f)  >= (oCurrentBall->GetPosition().getXPos() - oCurrentBall->GetCollisionBox().top / 2.0f) &&
+        (oCurrentPlayer->GetPosition().getXPos() - oCurrentPlayer->GetCollisionBox().bottom / 2.0f)   <= (oCurrentBall->GetPosition().getXPos() + oCurrentBall->GetCollisionBox().bottom / 2.0f) &&
+        (oCurrentPlayer->GetPosition().getYPos() - oCurrentPlayer->GetCollisionBox().left / 2.0f) <= (oCurrentBall->GetPosition().getYPos() + oCurrentBall->GetCollisionBox().left / 2.0f) &&
+        (oCurrentPlayer->GetPosition().getYPos() + oCurrentPlayer->GetCollisionBox().right / 2.0f)    >= (oCurrentBall->GetPosition().getYPos() - oCurrentBall->GetCollisionBox().right / 2.0f))
+    {
+        return true;
+    }
 
 
     return false;
 }
+
 
 
 

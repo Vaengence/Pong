@@ -6,6 +6,8 @@
 #include "Helper.h"
 #include "BallSprite.h"
 #include "PlayerSprite.h"
+#include "Rect.h"
+#include <iterator>
 
 class GameManager
 {
@@ -16,8 +18,10 @@ public:
 	void StartGame();
 	void GameLoop();
 	void Update();
-	bool CollissionCheck();
+	void RunCollisions();
 	void Draw();
+
+	bool CollisionCheck(PlayerSprite* oCurrentPlayer, BallSprite* oCurrentBall);
 
 private:
 

@@ -18,6 +18,7 @@ public:
 	void SetVelocity(Point2D oNewVelocity);
 	Object GetObjectID();
 	bool CollissionCheck(Point2D *oOtherPosition, Rect *oOtherCollissionBox);
+	Rect GetCollisionBox();
 	void Draw();
 
 	virtual void Update();
