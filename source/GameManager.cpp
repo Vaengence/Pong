@@ -91,10 +91,11 @@ void GameManager::RunCollisions()
 
 bool GameManager::CollisionCheck(PlayerSprite* oCurrentPlayer, BallSprite* oCurrentBall)
 {
-    if ((oCurrentPlayer->GetPosition().getXPos() + oCurrentPlayer->GetCollisionBox().top / 2.0f)  >= (oCurrentBall->GetPosition().getXPos() - oCurrentBall->GetCollisionBox().top / 2.0f) &&
-        (oCurrentPlayer->GetPosition().getXPos() - oCurrentPlayer->GetCollisionBox().bottom / 2.0f)   <= (oCurrentBall->GetPosition().getXPos() + oCurrentBall->GetCollisionBox().bottom / 2.0f) &&
-        (oCurrentPlayer->GetPosition().getYPos() - oCurrentPlayer->GetCollisionBox().left / 2.0f) <= (oCurrentBall->GetPosition().getYPos() + oCurrentBall->GetCollisionBox().left / 2.0f) &&
-        (oCurrentPlayer->GetPosition().getYPos() + oCurrentPlayer->GetCollisionBox().right / 2.0f)    >= (oCurrentBall->GetPosition().getYPos() - oCurrentBall->GetCollisionBox().right / 2.0f))
+
+    if ((oCurrentPlayer->GetPosition().getXPos() + oCurrentPlayer->GetTexture().width >= oCurrentBall->GetPosition().getXPos()) &&
+        (oCurrentPlayer->GetPosition().getXPos() <= oCurrentBall->GetPosition().getXPos() + oCurrentBall->GetTexture().width) &&
+        (oCurrentPlayer->GetPosition().getYPos() + oCurrentPlayer->GetTexture().height >= oCurrentBall->GetPosition().getYPos()) &&
+        (oCurrentPlayer->GetPosition().getYPos() <= oCurrentBall->GetPosition().getYPos() + oCurrentBall->GetTexture().height))
     {
         return true;
     }
