@@ -1,5 +1,4 @@
 #pragma once
-#include <random>
 
 enum class Object
 {
@@ -17,3 +16,9 @@ enum class GameState
 	EXIT = 4
 };
 
+enum class GameSoundType
+{
+	BALL_BOUNCE = 0,
+	GOAL = 1,
+	END_GAME = 2
+};

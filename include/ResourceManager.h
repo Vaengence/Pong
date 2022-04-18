@@ -8,7 +8,8 @@
 #include "Helper.h"
 #include <random>
 #include "PlayerSprite.h"
-#include "BallSprite.h"
+#include "BallManager.h"
+#include <unordered_map>
 
 class BaseSprite;
 
@@ -18,8 +19,10 @@ public:
 	ResourceManager();
 	~ResourceManager();
 	void InitialisePlayingScreen();
-	void ImportData(std::vector<PlayerSprite*> *oPlayerSprites, std::vector<BallSprite*> *oBallSprites);
+	void ImportData(std::vector<PlayerSprite*> *oPlayerSprites, BallManager *oBallManager);
 	float RandomGenerator();
+	void ImportSounds();
+	void PlayGameSound(GameSoundType oSoundToPlay);
 
 
 private:
@@ -28,6 +31,8 @@ private:
 	int screenHeight;
 	std::string gameTitle;
 	std::string spritesFile;
+	std::string soundsFile;
+	std::unordered_map<GameSoundType, Sound> mGameSounds;
 };
 
 #endif // !_RESOURCEMANAGER_H_

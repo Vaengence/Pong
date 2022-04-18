@@ -13,6 +13,7 @@ void GameManager::StartGame()
     
     oResources->InitialisePlayingScreen();
     oResources->ImportData(&vPlayerSpriteArray, oBallManager);
+    oResources->ImportSounds();
 
     GameLoop();
 
@@ -79,6 +80,7 @@ void GameManager::RunCollisions()
             if (CollisionCheck(*playerIterator, *ballIterator))
             {
                 oBallManager->HasCollided(ballIterator);
+                oResources->PlayGameSound(GameSoundType::BALL_BOUNCE);
             }
         }
     }

@@ -9,8 +9,8 @@ PlayerSprite::PlayerSprite(const char* SpriteImage, Object oObjectID)
 		Point2D oStartPosition;
 		int x = (GetScreenWidth() / 2) - this->GetTexture().width / 2;
 		int y = (GetScreenHeight() - 50);
-		oStartPosition.setXPos(x);
-		oStartPosition.setYPos(y);
+		oStartPosition.setXPos((float)x);
+		oStartPosition.setYPos((float)y);
 		this->SetPosition(oStartPosition);
 	}
 
@@ -19,8 +19,8 @@ PlayerSprite::PlayerSprite(const char* SpriteImage, Object oObjectID)
 		Point2D oStartPosition;
 		int x = (GetScreenWidth() / 2) - this->GetTexture().width / 2;
 		int y = (50);
-		oStartPosition.setXPos(x);
-		oStartPosition.setYPos(y);
+		oStartPosition.setXPos((float)x);
+		oStartPosition.setYPos((float)y);
 		this->SetPosition(oStartPosition);
 	}
 }
@@ -103,6 +103,6 @@ void PlayerSprite::Update()
 
 	if (this->GetPosition().getXPos() > GetScreenWidth() - this->GetTexture().width)
 	{
-		this->SetPosition(Point2D(GetScreenWidth() - this->GetTexture().width, this->GetPosition().getYPos()));
+		this->SetPosition(Point2D((float)GetScreenWidth() - this->GetTexture().width, this->GetPosition().getYPos()));
 	}
 }
