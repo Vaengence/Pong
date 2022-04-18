@@ -4,10 +4,10 @@
 #include "ResourceManager.h"
 #include <raylib.h>
 #include "Helper.h"
-#include "BallSprite.h"
 #include "PlayerSprite.h"
 #include "Rect.h"
 #include <iterator>
+#include "BallManager.h"
 
 class GameManager
 {
@@ -28,7 +28,7 @@ private:
 	ResourceManager *oResources;
 	GameState oCurrentGameState;
 	std::vector<PlayerSprite*> vPlayerSpriteArray;
-	std::vector<BallSprite*> vBallSpriteArray;
+	BallManager *oBallManager;
 
 };
 

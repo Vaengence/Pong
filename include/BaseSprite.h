@@ -11,6 +11,7 @@ class BaseSprite
 public:
 
 	BaseSprite(const char* sFilePath, Object oObjectID );
+	~BaseSprite();
 	Texture GetTexture();
 	void SetPosition(Point2D oNewPosition);
 	Point2D GetPosition();

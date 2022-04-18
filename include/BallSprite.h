@@ -8,6 +8,7 @@ class BallSprite : public BaseSprite
 {
 public:
 	BallSprite(const char* SpriteImage, Object oObjectID, Point2D oInitVelocity);
+	void KeepInPlay(Point2D* oCurrentPosition, Point2D* oCurrentVelocity);
 
 	virtual void Update();
 
