@@ -53,4 +53,8 @@ Rect BaseSprite::GetCollisionBox()
 	return this->oCollisionBox;
 }
 
+BaseSprite::~BaseSprite()
+{
+	UnloadTexture(this->rtSprite);
+}
 

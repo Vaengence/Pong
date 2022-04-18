@@ -14,14 +14,19 @@ void BallSprite::Update()
 	Point2D oCurrentPosition = this->GetPosition();
 	Point2D oCurrentVelocity = this->GetVelocity();
 
-	if (oCurrentPosition.getXPos() + oCurrentVelocity.getXPos() < 0 || oCurrentPosition.getXPos() + oCurrentVelocity.getXPos() > GetScreenWidth() - this->GetTexture().width)
-	{
-		oCurrentVelocity.setXPos(oCurrentVelocity.getXPos() * -1);
-	}
+	KeepInPlay(&oCurrentPosition, &oCurrentVelocity);
 
 	this->SetVelocity(oCurrentVelocity);
 	this->SetPosition(oCurrentPosition + oCurrentVelocity);
 
 
 
+}
+
+void BallSprite::KeepInPlay(Point2D * oCurrentPosition, Point2D * oCurrentVelocity)
+{
+	if (oCurrentPosition->getXPos() + oCurrentVelocity->getXPos() < 0 || oCurrentPosition->getXPos() + oCurrentVelocity->getXPos() > GetScreenWidth() - this->GetTexture().width)
+	{
+		oCurrentVelocity->setXPos(oCurrentVelocity->getXPos() * -1);
+	}
 }

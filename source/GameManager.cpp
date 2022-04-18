@@ -3,6 +3,7 @@
 GameManager::GameManager()
 {
     this->oResources = new ResourceManager();
+    this->oBallManager = new BallManager();
     this->oCurrentGameState = GameState::TITLE_SCREEN;
     
 }
@@ -11,10 +12,12 @@ void GameManager::StartGame()
 {
     
     oResources->InitialisePlayingScreen();
-    oResources->ImportData(&vPlayerSpriteArray, &vBallSpriteArray);
+    oResources->ImportData(&vPlayerSpriteArray, oBallManager);
+    oResources->ImportSounds();
 
     GameLoop();
 
+    CloseAudioDevice();
     CloseWindow();        // Close window and OpenGL context
 
 }
@@ -45,10 +48,8 @@ void GameManager::Update()
         (*iter)->Update();
     }
 
-    for (std::vector<BallSprite*>::iterator iter = vBallSpriteArray.begin(); iter != vBallSpriteArray.end(); iter++)
-    {
-        (*iter)->Update();
-    }
+    oBallManager->Update();
+
 }
 
 void GameManager::Draw()
@@ -61,29 +62,25 @@ void GameManager::Draw()
         (*iter)->Draw();
     }
 
-    for (std::vector<BallSprite*>::iterator iter = vBallSpriteArray.begin(); iter != vBallSpriteArray.end(); iter++)
-    {
-        (*iter)->Draw();
-    }
+    oBallManager->Draw();
 
     EndDrawing();
 }
 
 void GameManager::RunCollisions()
 {
+    auto balls = oBallManager->GetBalls();
+
     for (std::vector<PlayerSprite*>::iterator playerIterator = vPlayerSpriteArray.begin(); playerIterator != vPlayerSpriteArray.end(); playerIterator++)
     {
-        for (std::vector<BallSprite*>::iterator ballIterator = vBallSpriteArray.begin(); ballIterator != vBallSpriteArray.end(); ballIterator++)
+
+        for (std::vector<BallSprite*>::iterator ballIterator = balls.begin(); ballIterator != balls.end(); ballIterator++)
         {
 
             if (CollisionCheck(*playerIterator, *ballIterator))
             {
-                BallSprite* oTempBall = *ballIterator;
-
-                Point2D oCurrentVelocity = oTempBall->GetVelocity();
-
-                oCurrentVelocity.setYPos(oCurrentVelocity.getYPos() * -1);
-                oTempBall->SetVelocity(oCurrentVelocity);
+                oBallManager->HasCollided(ballIterator);
+                oResources->PlayGameSound(GameSoundType::BALL_BOUNCE);
             }
         }
     }
@@ -110,4 +107,5 @@ bool GameManager::CollisionCheck(PlayerSprite* oCurrentPlayer, BallSprite* oCurr
 GameManager::~GameManager()
 {
     delete this->oResources;
+    delete this->oBallManager;
 }

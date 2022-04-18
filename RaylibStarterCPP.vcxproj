@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\BallManager.cpp" />
     <ClCompile Include="source\BallSprite.cpp" />
     <ClCompile Include="source\BaseSprite.cpp" />
     <ClCompile Include="source\GameManager.cpp" />
@@ -29,6 +30,7 @@
     <ClCompile Include="source\ResourceManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\BallManager.h" />
     <ClInclude Include="include\BallSprite.h" />
     <ClInclude Include="include\BaseSprite.h" />
     <ClInclude Include="include\Helper.h" />
