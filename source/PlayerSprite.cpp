@@ -35,7 +35,7 @@ void PlayerSprite::Update()
 		if (IsKeyDown(KEY_A))
 		{
 			Point2D oCurrentVelocity = this->GetVelocity();
-			oCurrentVelocity.setXPos(-3.0f);
+			oCurrentVelocity.setXPos(-6.0f);
 			this->SetVelocity(oCurrentVelocity);
 		}
 
@@ -49,7 +49,7 @@ void PlayerSprite::Update()
 		if (IsKeyDown(KEY_D))
 		{
 			Point2D oCurrentVelocity = this->GetVelocity();
-			oCurrentVelocity.setXPos(3.0f);
+			oCurrentVelocity.setXPos(6.0f);
 			this->SetVelocity(oCurrentVelocity);
 		}
 
@@ -66,7 +66,7 @@ void PlayerSprite::Update()
 		if (IsKeyDown(KEY_LEFT))
 		{
 			Point2D oCurrentVelocity = this->GetVelocity();
-			oCurrentVelocity.setXPos(-3.0f);
+			oCurrentVelocity.setXPos(-6.0f);
 			this->SetVelocity(oCurrentVelocity);
 		}
 
@@ -80,7 +80,7 @@ void PlayerSprite::Update()
 		if (IsKeyDown(KEY_RIGHT))
 		{
 			Point2D oCurrentVelocity = this->GetVelocity();
-			oCurrentVelocity.setXPos(3.0f);
+			oCurrentVelocity.setXPos(6.0f);
 			this->SetVelocity(oCurrentVelocity);
 		}
 

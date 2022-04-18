@@ -5,6 +5,7 @@
 #include "PlayerSprite.h"
 #include "BallSprite.h"
 #include <algorithm>
+#include "Helper.h"
 
 
 ResourceManager::ResourceManager()

@@ -18,7 +18,6 @@ public:
 	Point2D GetVelocity();
 	void SetVelocity(Point2D oNewVelocity);
 	Object GetObjectID();
-	bool CollissionCheck(Point2D *oOtherPosition, Rect *oOtherCollissionBox);
 	Rect GetCollisionBox();
 	void Draw();
 
@@ -31,6 +30,7 @@ private:
 	Point2D oVelocity;
 	Rect oCollisionBox;
 	Object oObjectID;
+	const char* csSpriteLocation;
 
 };
 

@@ -1,11 +1,11 @@
 #include "BaseSprite.h"
 
 BaseSprite::BaseSprite(const char* sFilePath, Object oObjectID)
-	: rtSprite{ LoadTexture(sFilePath) }
-	, oObjectID{ oObjectID }
+	: oObjectID{ oObjectID }
 	, oCollisionBox{Rect {(float)rtSprite.height, (float)rtSprite.height, (float)rtSprite.width, (float)rtSprite.width}}
+	, csSpriteLocation{sFilePath}
 {
-	
+	this->rtSprite = LoadTexture(this->csSpriteLocation);
 }
 
 void BaseSprite::Update()

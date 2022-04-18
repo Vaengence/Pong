@@ -69,12 +69,12 @@ void GameManager::Draw()
 
 void GameManager::RunCollisions()
 {
-    auto balls = oBallManager->GetBalls();
+    std::vector<BallSprite*> *balls = oBallManager->GetBalls();
 
-    for (std::vector<PlayerSprite*>::iterator playerIterator = vPlayerSpriteArray.begin(); playerIterator != vPlayerSpriteArray.end(); playerIterator++)
+    for (std::vector<BallSprite*>::iterator ballIterator = balls->begin(); ballIterator != balls->end(); ballIterator++)
     {
 
-        for (std::vector<BallSprite*>::iterator ballIterator = balls.begin(); ballIterator != balls.end(); ballIterator++)
+        for (std::vector<PlayerSprite*>::iterator playerIterator = vPlayerSpriteArray.begin(); playerIterator != vPlayerSpriteArray.end(); playerIterator++)
         {
 
             if (CollisionCheck(*playerIterator, *ballIterator))
@@ -82,6 +82,13 @@ void GameManager::RunCollisions()
                 oBallManager->HasCollided(ballIterator);
                 oResources->PlayGameSound(GameSoundType::BALL_BOUNCE);
             }
+        }
+
+        if (Goal(*ballIterator))
+        {
+            oBallManager->HasScored(ballIterator);
+            oResources->PlayGameSound(GameSoundType::GOAL);
+            break;
         }
     }
 }
@@ -101,7 +108,15 @@ bool GameManager::CollisionCheck(PlayerSprite* oCurrentPlayer, BallSprite* oCurr
     return false;
 }
 
+bool GameManager::Goal(BallSprite* oCurrentBall)
+{
+    if (oCurrentBall->GetPosition().getYPos() > (float)GetScreenHeight() || oCurrentBall->GetPosition().getYPos() < 0)
+    {
+        return true;
+    }
 
+    return false;
+}
 
 
 GameManager::~GameManager()

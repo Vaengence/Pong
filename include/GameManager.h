@@ -21,6 +21,7 @@ public:
 	void RunCollisions();
 	void Draw();
 
+	bool Goal(BallSprite* oCurrentBall);
 	bool CollisionCheck(PlayerSprite* oCurrentPlayer, BallSprite* oCurrentBall);
 
 private:
