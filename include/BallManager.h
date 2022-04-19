@@ -29,6 +29,7 @@ public:
 private:
 	std::vector<BallSprite*> *vBallSpriteArray;
 	ResourceManager* oResources;
+	int iGameLevel;
 };
 
 #endif

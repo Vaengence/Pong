@@ -26,6 +26,7 @@ private:
 
 	std::vector<PlayerSprite*>* vPlayerSprites;
 	ResourceManager* oResources;
+	int iGameLevel;
 };
 
 #endif // !_PLAYERMANAGER_H

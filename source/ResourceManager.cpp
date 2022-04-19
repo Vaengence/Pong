@@ -108,7 +108,7 @@ float ResourceManager::RandomGenerator()
 {
 	std::random_device randomDevice;
 	std::default_random_engine randomGenerator(randomDevice());
-	std::uniform_real_distribution<float> distribution(-3.0f, 3.0f);
+	std::uniform_real_distribution<float> distribution(-0.1f, 0.1f);
 
 	return distribution(randomDevice);
 

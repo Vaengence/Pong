@@ -8,7 +8,9 @@ BallManager::BallManager(ResourceManager* oResources)
 
 void BallManager::InitialiseLevel(int level)
 {
-    for (int i = 0; i < level; i++)
+    this->iGameLevel = level;
+
+    for (int i = 0; i < iGameLevel; i++)
     {
         CreateBall();    
     }
@@ -18,7 +20,9 @@ void BallManager::CreateBall()
 {
     
     Texture2D tTempTexture = oResources->CreateTexture(Object::BALL);
-    Point2D oTempVelocity = { oResources->RandomGenerator(), oResources->RandomGenerator() };
+    Point2D oTempVelocity = { 
+        oResources->RandomGenerator() + iGameLevel, 
+        oResources->RandomGenerator() + iGameLevel };
     vBallSpriteArray->push_back(new BallSprite(tTempTexture, Object::BALL, oTempVelocity));
 
 }
