@@ -15,7 +15,7 @@ class BallManager : public ObjectManager
 {
 public:
 	BallManager(ResourceManager* oResources);
-	void CreateBall(const char* csLocation, Object oObjectType, Point2D oInitVelocity);
+	void CreateBall();
 	void HasCollided(std::vector<BallSprite*>::iterator oCollidedBall);
 	void HasScored(std::vector<BallSprite*>::iterator oCollidedBall);
 

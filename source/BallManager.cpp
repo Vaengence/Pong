@@ -10,15 +10,17 @@ void BallManager::InitialiseLevel(int level)
 {
     for (int i = 0; i < level; i++)
     {
-        Texture2D tTempTexture = oResources->CreateTexture(Object::BALL);
-        Point2D oTempVelocity = { oResources->RandomGenerator(), oResources->RandomGenerator() };
-        vBallSpriteArray->push_back(new BallSprite(tTempTexture, Object::BALL, oTempVelocity));
+        CreateBall();    
     }
 }
 
-void BallManager::CreateBall(const char* csLocation, Object oObjectType, Point2D oInitVelocity)
+void BallManager::CreateBall()
 {
-	//vBallSpriteArray->push_back(new BallSprite(csLocation, oObjectType, oInitVelocity));
+    
+    Texture2D tTempTexture = oResources->CreateTexture(Object::BALL);
+    Point2D oTempVelocity = { oResources->RandomGenerator(), oResources->RandomGenerator() };
+    vBallSpriteArray->push_back(new BallSprite(tTempTexture, Object::BALL, oTempVelocity));
+
 }
 
 void BallManager::Update()
@@ -71,9 +73,8 @@ void BallManager::HasCollided(const std::vector<BallSprite*>::iterator oCollided
 
 void BallManager::HasScored(std::vector<BallSprite*>::iterator oCollidedBall)
 {
-    //(*oCollidedBall)->SetPosition();
-    //(*oCollidedBall)->SetVelocity();
-    //(*oCollidedBall)->get
+    vBallSpriteArray->erase(oCollidedBall);
+    CreateBall();
 
 }
 
