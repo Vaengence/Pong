@@ -24,6 +24,7 @@
     <ClCompile Include="source\BaseSprite.cpp" />
     <ClCompile Include="source\GameManager.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\PlayerManager.cpp" />
     <ClCompile Include="source\PlayerSprite.cpp" />
     <ClCompile Include="source\Point2D.cpp" />
     <ClCompile Include="source\Rect.cpp" />
@@ -35,6 +36,8 @@
     <ClInclude Include="include\BaseSprite.h" />
     <ClInclude Include="include\Helper.h" />
     <ClInclude Include="include\GameManager.h" />
+    <ClInclude Include="include\ObjectManager.h" />
+    <ClInclude Include="include\PlayerManager.h" />
     <ClInclude Include="include\PlayerSprite.h" />
     <ClInclude Include="include\Point2D.h" />
     <ClInclude Include="include\Rect.h" />

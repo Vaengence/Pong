@@ -1,11 +1,11 @@
 #include "BaseSprite.h"
 
-BaseSprite::BaseSprite(const char* sFilePath, Object oObjectID)
+BaseSprite::BaseSprite(Texture2D oSpriteTexture, Object oObjectID)
 	: oObjectID{ oObjectID }
 	, oCollisionBox{Rect {(float)rtSprite.height, (float)rtSprite.height, (float)rtSprite.width, (float)rtSprite.width}}
-	, csSpriteLocation{sFilePath}
+	, rtSprite{oSpriteTexture}
 {
-	this->rtSprite = LoadTexture(this->csSpriteLocation);
+
 }
 
 void BaseSprite::Update()
@@ -15,7 +15,8 @@ void BaseSprite::Update()
 
 void BaseSprite::Draw()
 {
-	DrawTexture(this->GetTexture(), this->GetPosition().getXPos(), this->GetPosition().getYPos(), RAYWHITE);
+	Vector2 vTemp = { this->GetPosition().getXPos() , this->GetPosition().getYPos() };
+	DrawTextureV(this->GetTexture(), vTemp, RAYWHITE);
 }
 
 void BaseSprite::SetPosition(Point2D oNewPosition)

@@ -8,6 +8,8 @@
 #include "Rect.h"
 #include <iterator>
 #include "BallManager.h"
+#include "PlayerManager.h"
+#include "ObjectManager.h"
 
 class GameManager
 {
@@ -28,9 +30,9 @@ private:
 
 	ResourceManager *oResources;
 	GameState oCurrentGameState;
-	std::vector<PlayerSprite*> vPlayerSpriteArray;
+	std::vector<ObjectManager*> vObjectManagers;
 	BallManager *oBallManager;
-
+	PlayerManager* oPlayerManager;
 };
 
 #endif // !_POINT2D_H_

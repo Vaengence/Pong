@@ -1,7 +1,7 @@
 #include "PlayerSprite.h"
 
-PlayerSprite::PlayerSprite(const char* SpriteImage, Object oObjectID)
-	: BaseSprite(SpriteImage, oObjectID)
+PlayerSprite::PlayerSprite(Texture2D oSpriteTexture, Object oObjectID)
+	: BaseSprite(oSpriteTexture, oObjectID)
 {
 	// Sets initial values for the Player One on import
 	if (oObjectID == Object::PLAYER_ONE_SPRITE)

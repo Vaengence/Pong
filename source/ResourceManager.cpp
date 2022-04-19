@@ -2,8 +2,6 @@
 #include <raylib.h>
 #include <iostream>
 #include <sstream>
-#include "PlayerSprite.h"
-#include "BallSprite.h"
 #include <algorithm>
 #include "Helper.h"
 
@@ -27,7 +25,7 @@ void ResourceManager::InitialisePlayingScreen()
 
 }
 
-void ResourceManager::ImportData(std::vector<PlayerSprite*>* oPlayerSprites, BallManager* oBallManager)
+void ResourceManager::ImportData()
 {
 	//Code to read in Sprite Data. Not so useful with three sprites, intended to be expandable. 
 	std::ifstream ifsSprites;
@@ -58,29 +56,7 @@ void ResourceManager::ImportData(std::vector<PlayerSprite*>* oPlayerSprites, Bal
 
 		Object input = (Object)sTypeTemp;
 
-		switch (input)
-		{
-		case Object::PLAYER_ONE_SPRITE:
-			{
-				oPlayerSprites->push_back(new PlayerSprite(sLocationTemp.c_str(), input));
-				break;
-			}
-
-		case Object::PLAYER_TWO_SPRITE:
-			{
-				oPlayerSprites->push_back(new PlayerSprite(sLocationTemp.c_str(), input));
-				break;
-			}
-
-		case Object::BALL:
-			{
-			Point2D oInitVelocity = { RandomGenerator(), RandomGenerator() };
-				oBallManager->CreateBall(sLocationTemp.c_str(), input, oInitVelocity);
-				break;
-			}
-
-		}
-		
+		mGameTextures.insert({ input, sLocationTemp });		
 	}
 
 	ifsSprites.close();
@@ -142,6 +118,11 @@ void ResourceManager::PlayGameSound(GameSoundType oSoundToPlay)
 {
 	
 	PlaySound(mGameSounds.at(oSoundToPlay));
+}
+
+Texture2D ResourceManager::CreateTexture(Object oTypeToCreate)
+{
+	return LoadTexture(mGameTextures.at(oTypeToCreate).c_str());
 }
 
 ResourceManager::~ResourceManager()

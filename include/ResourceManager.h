@@ -4,12 +4,11 @@
 #include <vector>
 #include <string>
 #include <fstream>
-#include "BaseSprite.h"
 #include "Helper.h"
 #include <random>
-#include "PlayerSprite.h"
-#include "BallManager.h"
 #include <unordered_map>
+#include <string>
+#include <raylib.h>
 
 class BaseSprite;
 
@@ -19,10 +18,11 @@ public:
 	ResourceManager();
 	~ResourceManager();
 	void InitialisePlayingScreen();
-	void ImportData(std::vector<PlayerSprite*> *oPlayerSprites, BallManager *oBallManager);
+	void ImportData();
 	float RandomGenerator();
 	void ImportSounds();
 	void PlayGameSound(GameSoundType oSoundToPlay);
+	Texture2D CreateTexture(Object oTypeToCreate);
 
 
 private:
@@ -33,6 +33,7 @@ private:
 	std::string spritesFile;
 	std::string soundsFile;
 	std::unordered_map<GameSoundType, Sound> mGameSounds;
+	std::unordered_map<Object, std::string> mGameTextures;
 };
 
 #endif // !_RESOURCEMANAGER_H_

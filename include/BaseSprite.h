@@ -10,7 +10,7 @@ class BaseSprite
 {
 public:
 
-	BaseSprite(const char* sFilePath, Object oObjectID );
+	BaseSprite(Texture2D oSpriteTexture, Object oObjectID);
 	~BaseSprite();
 	Texture GetTexture();
 	void SetPosition(Point2D oNewPosition);
@@ -30,7 +30,6 @@ private:
 	Point2D oVelocity;
 	Rect oCollisionBox;
 	Object oObjectID;
-	const char* csSpriteLocation;
 
 };
 

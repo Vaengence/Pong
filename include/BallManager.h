@@ -2,24 +2,33 @@
 #define _BALLMANAGER_H_
 
 #include "BallSprite.h"
+#include "ObjectManager.h"
+#include "ResourceManager.h"
 #include <vector>
 #include "Helper.h"
 #include "Point2D.h"
 #include <math.h>
+#include <string>
 
-class BallManager
+
+class BallManager : public ObjectManager
 {
 public:
-	BallManager();
+	BallManager(ResourceManager* oResources);
 	void CreateBall(const char* csLocation, Object oObjectType, Point2D oInitVelocity);
-	void Update();
-	void Draw();
 	void HasCollided(std::vector<BallSprite*>::iterator oCollidedBall);
-	std::vector<BallSprite*>* GetBalls();
 	void HasScored(std::vector<BallSprite*>::iterator oCollidedBall);
+
+	std::vector<BallSprite*>* GetBalls();
+
+	void InitialiseLevel(int level) override;
+	void Update() override;
+	void Draw() override;
+	void Collisions() override;
 
 private:
 	std::vector<BallSprite*> *vBallSpriteArray;
+	ResourceManager* oResources;
 };
 
 #endif

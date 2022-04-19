@@ -3,11 +3,12 @@
 
 #include "BaseSprite.h"
 #include "Helper.h"
+#include <raylib.h>
 
 class PlayerSprite : public BaseSprite
 {
 public:
-	PlayerSprite(const char* SpriteImage, Object oObjectID);
+	PlayerSprite(Texture2D oSpriteTexture, Object oObjectID);
 
 	virtual void Update();
 

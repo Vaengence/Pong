@@ -1,8 +1,8 @@
 #include "BallSprite.h"
 
 
-BallSprite::BallSprite(const char* SpriteImage, Object oObjectID, Point2D oInitVelocity)
-	: BaseSprite(SpriteImage, oObjectID)
+BallSprite::BallSprite(Texture2D oSpriteTexture, Object oObjectID, Point2D oInitVelocity)
+	: BaseSprite(oSpriteTexture, oObjectID)
 {
 	Point2D oStartPosition = { GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f };
 	this->SetPosition(oStartPosition);

@@ -3,17 +3,25 @@
 GameManager::GameManager()
 {
     this->oResources = new ResourceManager();
-    this->oBallManager = new BallManager();
+    this->oBallManager = new BallManager(oResources);
+    this->oPlayerManager = new PlayerManager(oResources);
     this->oCurrentGameState = GameState::TITLE_SCREEN;
     
+    vObjectManagers.push_back(oBallManager);
+    vObjectManagers.push_back(oPlayerManager);
 }
 
 void GameManager::StartGame()
 {
     
     oResources->InitialisePlayingScreen();
-    oResources->ImportData(&vPlayerSpriteArray, oBallManager);
+    oResources->ImportData();
     oResources->ImportSounds();
+    
+    for (std::vector<ObjectManager*>::iterator iter = vObjectManagers.begin(); iter != vObjectManagers.end(); iter++)
+    {
+        (*iter)->InitialiseLevel(1); // Level 1 by default as multiple levels not yet implemented
+    }
 
     GameLoop();
 
@@ -24,6 +32,7 @@ void GameManager::StartGame()
 
 void GameManager::GameLoop()
 {
+
     // Main game loop
     while (this->oCurrentGameState != GameState::EXIT)    // Detect window close button or ESC key
     {
@@ -43,12 +52,10 @@ void GameManager::GameLoop()
 void GameManager::Update()
 {
 
-    for (std::vector<PlayerSprite*>::iterator iter = vPlayerSpriteArray.begin(); iter != vPlayerSpriteArray.end(); iter++)
+    for (std::vector<ObjectManager*>::iterator iter = vObjectManagers.begin(); iter != vObjectManagers.end(); iter++)
     {
         (*iter)->Update();
     }
-
-    oBallManager->Update();
 
 }
 
@@ -57,12 +64,10 @@ void GameManager::Draw()
     BeginDrawing();
     ClearBackground(BLACK);
 
-    for (std::vector<PlayerSprite*>::iterator iter = vPlayerSpriteArray.begin(); iter != vPlayerSpriteArray.end(); iter++)
+    for (std::vector<ObjectManager*>::iterator iter = vObjectManagers.begin(); iter != vObjectManagers.end(); iter++)
     {
         (*iter)->Draw();
     }
-
-    oBallManager->Draw();
 
     EndDrawing();
 }
@@ -70,11 +75,12 @@ void GameManager::Draw()
 void GameManager::RunCollisions()
 {
     std::vector<BallSprite*> *balls = oBallManager->GetBalls();
+    std::vector<PlayerSprite*> *players = oPlayerManager->GetPlayers();
 
     for (std::vector<BallSprite*>::iterator ballIterator = balls->begin(); ballIterator != balls->end(); ballIterator++)
     {
 
-        for (std::vector<PlayerSprite*>::iterator playerIterator = vPlayerSpriteArray.begin(); playerIterator != vPlayerSpriteArray.end(); playerIterator++)
+        for (std::vector<PlayerSprite*>::iterator playerIterator = players->begin(); playerIterator != players->end(); playerIterator++)
         {
 
             if (CollisionCheck(*playerIterator, *ballIterator))
@@ -91,6 +97,7 @@ void GameManager::RunCollisions()
             break;
         }
     }
+
 }
 
 bool GameManager::CollisionCheck(PlayerSprite* oCurrentPlayer, BallSprite* oCurrentBall)
