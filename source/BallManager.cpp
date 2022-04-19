@@ -49,11 +49,47 @@ std::vector<BallSprite*>* BallManager::GetBalls()
 }
 
 
-void BallManager::HasCollided(const std::vector<BallSprite*>::iterator oCollidedBall)
+void BallManager::HasCollided(const std::vector<BallSprite*>::iterator oCollidedBall, CollisionType sCollisionType, Point2D oPlayerVelocity)
 {
     Point2D oCurrentVelocity = (*oCollidedBall)->GetVelocity();
-    oCurrentVelocity.setYPos(oCurrentVelocity.getYPos() * -1);
+   // Point2D oCurrentPosition = (*oCollidedBall)->GetPosition();
 
+    switch (sCollisionType)
+    {
+    case CollisionType::STANDARD:
+        //Sets the ball to reverse the Y direction on hitting a paddle
+        oCurrentVelocity.setYPos(oCurrentVelocity.getYPos() * -1);
+        break;
+
+    case CollisionType::PLAYER_LEFT_SIDE:
+        if (!signbit(oCurrentVelocity.getXPos()) && signbit(oPlayerVelocity.getXPos()))
+        {
+            oCurrentVelocity.setXPos(oCurrentVelocity.getXPos() * -1);
+        }
+
+        if (signbit(oCurrentVelocity.getXPos()) && signbit(oPlayerVelocity.getXPos()))
+        {
+            oCurrentVelocity.setXPos(oCurrentVelocity.getXPos() + oPlayerVelocity.getXPos() / 4);
+        }
+
+        break;
+
+    case CollisionType::PLAYER_RIGHT_SIDE:
+        //Sets the ball to reverse the X direction on hitting a paddle
+        if (signbit(oCurrentVelocity.getXPos()) && !signbit(oPlayerVelocity.getXPos()))
+        {
+            oCurrentVelocity.setXPos(oCurrentVelocity.getXPos() * -1);
+        }
+
+        if (!signbit(oCurrentVelocity.getXPos()) && !signbit(oPlayerVelocity.getXPos()))
+        {
+            oCurrentVelocity.setXPos(oCurrentVelocity.getXPos() + oPlayerVelocity.getXPos() / 4);
+        }
+
+        break;
+    }
+
+    //These statements speed up the ball by a little bit each time it hits a paddle
     if (signbit(oCurrentVelocity.getXPos()))
     {
         oCurrentVelocity.setXPos(oCurrentVelocity.getXPos() - 0.1f);
@@ -72,6 +108,7 @@ void BallManager::HasCollided(const std::vector<BallSprite*>::iterator oCollided
         oCurrentVelocity.setYPos(oCurrentVelocity.getYPos() + 0.1f);
     }
 
+   // (*oCollidedBall)->SetPosition(oCurrentPosition);
     (*oCollidedBall)->SetVelocity(oCurrentVelocity);
 }
 

@@ -23,3 +23,11 @@ enum class GameSoundType
 	GOAL = 1,
 	END_GAME = 2
 };
+
+enum class CollisionType
+{
+	NO_COLLISION = 0,
+	STANDARD = 1,
+	PLAYER_LEFT_SIDE = 2,
+	PLAYER_RIGHT_SIDE = 3,
+};

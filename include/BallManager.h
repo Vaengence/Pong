@@ -16,7 +16,7 @@ class BallManager : public ObjectManager
 public:
 	BallManager(ResourceManager* oResources);
 	void CreateBall();
-	void HasCollided(std::vector<BallSprite*>::iterator oCollidedBall);
+	void HasCollided(std::vector<BallSprite*>::iterator oCollidedBall, CollisionType sCollisionType, Point2D oPlayerVelocity);
 	void HasScored(std::vector<BallSprite*>::iterator oCollidedBall);
 
 	std::vector<BallSprite*>* GetBalls();

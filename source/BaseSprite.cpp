@@ -4,6 +4,7 @@ BaseSprite::BaseSprite(Texture2D oSpriteTexture, Object oObjectID)
 	: oObjectID{ oObjectID }
 	, oCollisionBox{Rect {(float)rtSprite.height, (float)rtSprite.height, (float)rtSprite.width, (float)rtSprite.width}}
 	, rtSprite{oSpriteTexture}
+	, bActiveCollision{false}
 {
 
 }
@@ -52,6 +53,16 @@ Object BaseSprite::GetObjectID()
 Rect BaseSprite::GetCollisionBox()
 {
 	return this->oCollisionBox;
+}
+
+void BaseSprite::SetActiveCollision(bool bCollision)
+{
+	this->bActiveCollision = bCollision;
+}
+
+bool BaseSprite::GetCollisionState()
+{
+	return this->bActiveCollision;
 }
 
 BaseSprite::~BaseSprite()

@@ -20,6 +20,8 @@ public:
 	Object GetObjectID();
 	Rect GetCollisionBox();
 	void Draw();
+	void SetActiveCollision(bool bCollision);
+	bool GetCollisionState();
 
 	virtual void Update();
 
@@ -30,6 +32,7 @@ private:
 	Point2D oVelocity;
 	Rect oCollisionBox;
 	Object oObjectID;
+	bool bActiveCollision;
 
 };
 

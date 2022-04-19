@@ -17,6 +17,7 @@ void GameManager::StartGame()
     oResources->InitialisePlayingScreen();
     oResources->ImportData();
     oResources->ImportSounds();
+
     
     for (std::vector<ObjectManager*>::iterator iter = vObjectManagers.begin(); iter != vObjectManagers.end(); iter++)
     {
@@ -83,10 +84,26 @@ void GameManager::RunCollisions()
         for (std::vector<PlayerSprite*>::iterator playerIterator = players->begin(); playerIterator != players->end(); playerIterator++)
         {
 
-            if (CollisionCheck(*playerIterator, *ballIterator))
+            if ((*ballIterator)->GetCollisionState() == false && (*ballIterator)->GetCollidedTimer() == 0.0)
             {
-                oBallManager->HasCollided(ballIterator);
-                oResources->PlayGameSound(GameSoundType::BALL_BOUNCE);
+                CollisionType CheckForCollision = CollisionCheck(*playerIterator, *ballIterator);
+
+                if (CheckForCollision != CollisionType::NO_COLLISION)
+                {
+                    (*ballIterator)->SetActiveCollision(true);
+                    (*ballIterator)->SetCollidedTimer(GetTime() + 0.5);
+                    Point2D oPlayerVelocity = (*playerIterator)->GetVelocity();
+                    oBallManager->HasCollided(ballIterator, CheckForCollision, oPlayerVelocity);
+                    oResources->PlayGameSound(GameSoundType::BALL_BOUNCE);
+                }
+            }
+
+            if (CollisionCheck(*playerIterator, *ballIterator) == CollisionType::NO_COLLISION && 
+                (*ballIterator)->GetCollisionState() == true && 
+                GetTime() > (*ballIterator)->GetCollidedTimer())
+            {
+                (*ballIterator)->SetActiveCollision(false);
+                (*ballIterator)->SetCollidedTimer(0.0);
             }
         }
 
@@ -100,19 +117,35 @@ void GameManager::RunCollisions()
 
 }
 
-bool GameManager::CollisionCheck(PlayerSprite* oCurrentPlayer, BallSprite* oCurrentBall)
+CollisionType GameManager::CollisionCheck(PlayerSprite* oCurrentPlayer, BallSprite* oCurrentBall)
 {
+    CollisionType CheckForCollision = CollisionType::NO_COLLISION;
+
+
 
     if ((oCurrentPlayer->GetPosition().getXPos() + oCurrentPlayer->GetTexture().width >= oCurrentBall->GetPosition().getXPos()) &&
         (oCurrentPlayer->GetPosition().getXPos() <= oCurrentBall->GetPosition().getXPos() + oCurrentBall->GetTexture().width) &&
         (oCurrentPlayer->GetPosition().getYPos() + oCurrentPlayer->GetTexture().height >= oCurrentBall->GetPosition().getYPos()) &&
         (oCurrentPlayer->GetPosition().getYPos() <= oCurrentBall->GetPosition().getYPos() + oCurrentBall->GetTexture().height))
     {
-        return true;
+
+        if (oCurrentBall->GetPosition().getXPos() + oCurrentBall->GetTexture().width / 2 < oCurrentPlayer->GetPosition().getXPos())
+        {
+            CheckForCollision = CollisionType::PLAYER_LEFT_SIDE;
+            return CheckForCollision;
+        }
+
+        if (oCurrentBall->GetPosition().getXPos() + oCurrentBall->GetTexture().width / 2 > oCurrentPlayer->GetPosition().getXPos() + oCurrentPlayer->GetTexture().width)
+        {
+            CheckForCollision = CollisionType::PLAYER_RIGHT_SIDE;
+            return CheckForCollision;
+        }
+
+        CheckForCollision = CollisionType::STANDARD;
+        return CheckForCollision;
     }
 
-
-    return false;
+    return CheckForCollision;
 }
 
 bool GameManager::Goal(BallSprite* oCurrentBall)

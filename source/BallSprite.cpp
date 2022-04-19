@@ -3,6 +3,7 @@
 
 BallSprite::BallSprite(Texture2D oSpriteTexture, Object oObjectID, Point2D oInitVelocity)
 	: BaseSprite(oSpriteTexture, oObjectID)
+	, dCollidedTimer {0.0}
 {
 	Point2D oStartPosition = { GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f };
 	this->SetPosition(oStartPosition);
@@ -29,4 +30,14 @@ void BallSprite::KeepInPlay(Point2D * oCurrentPosition, Point2D * oCurrentVeloci
 	{
 		oCurrentVelocity->setXPos(oCurrentVelocity->getXPos() * -1);
 	}
+}
+
+double BallSprite::GetCollidedTimer()
+{
+	return this->dCollidedTimer;
+}
+
+void BallSprite::SetCollidedTimer(double dCollidedTime)
+{
+	this->dCollidedTimer = dCollidedTime;
 }
