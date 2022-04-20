@@ -76,29 +76,29 @@ void GameManager::Draw()
 void GameManager::RunCollisions()
 {
     std::vector<BallSprite*> *balls = oBallManager->GetBalls();
-    std::vector<PlayerSprite*> *players = oPlayerManager->GetPlayers();
+    std::unordered_map<Object, PlayerSprite*> *players = oPlayerManager->GetPlayers();
 
     for (std::vector<BallSprite*>::iterator ballIterator = balls->begin(); ballIterator != balls->end(); ballIterator++)
     {
 
-        for (std::vector<PlayerSprite*>::iterator playerIterator = players->begin(); playerIterator != players->end(); playerIterator++)
+        for (std::unordered_map<Object, PlayerSprite*>::iterator playerIterator = players->begin(); playerIterator != players->end(); playerIterator++)
         {
 
             if ((*ballIterator)->GetCollisionState() == false && (*ballIterator)->GetCollidedTimer() == 0.0)
             {
-                CollisionType CheckForCollision = CollisionCheck(*playerIterator, *ballIterator);
+                CollisionType CheckForCollision = CollisionCheck(playerIterator->second, *ballIterator);
 
                 if (CheckForCollision != CollisionType::NO_COLLISION)
                 {
                     (*ballIterator)->SetActiveCollision(true);
                     (*ballIterator)->SetCollidedTimer(GetTime() + 0.5);
-                    Point2D oPlayerVelocity = (*playerIterator)->GetVelocity();
+                    Point2D oPlayerVelocity = playerIterator->second->GetVelocity();
                     oBallManager->HasCollided(ballIterator, CheckForCollision, oPlayerVelocity);
                     oResources->PlayGameSound(GameSoundType::BALL_BOUNCE);
                 }
             }
 
-            if (CollisionCheck(*playerIterator, *ballIterator) == CollisionType::NO_COLLISION && 
+            if (CollisionCheck(playerIterator->second, *ballIterator) == CollisionType::NO_COLLISION &&
                 (*ballIterator)->GetCollisionState() == true && 
                 GetTime() > (*ballIterator)->GetCollidedTimer())
             {
@@ -109,8 +109,16 @@ void GameManager::RunCollisions()
 
         if (Goal(*ballIterator))
         {
+            if ((*ballIterator)->GetPosition().getYPos() > (float)GetScreenHeight())
+                oPlayerManager->PlayerScored(Object::PLAYER_TWO_SPRITE);
+            else
+                oPlayerManager->PlayerScored(Object::PLAYER_ONE_SPRITE);
+
             oBallManager->HasScored(ballIterator);
             oResources->PlayGameSound(GameSoundType::GOAL);
+
+
+
             break;
         }
     }

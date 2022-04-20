@@ -10,7 +10,13 @@ class PlayerSprite : public BaseSprite
 public:
 	PlayerSprite(Texture2D oSpriteTexture, Object oObjectID);
 
+	int GetPlayerScore();
+	void SetPlayerScore(int iScore);
+
 	virtual void Update();
+
+private:
+	int iPlayerScore;
 
 
 };

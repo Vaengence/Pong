@@ -20,9 +20,24 @@ void BallManager::CreateBall()
 {
     
     Texture2D tTempTexture = oResources->CreateTexture(Object::BALL);
-    Point2D oTempVelocity = { 
-        oResources->RandomGenerator() + iGameLevel, 
-        oResources->RandomGenerator() + iGameLevel };
+    Point2D oTempVelocity;
+
+    float fTempX = oResources->RandomGenerator();
+    float fTempY = oResources->RandomGenerator();
+
+    if (!signbit(fTempX))
+        fTempX = fTempX + iGameLevel;
+    else
+        fTempX = fTempX - iGameLevel;
+
+    if (!signbit(fTempY))
+        fTempY = fTempY + iGameLevel;
+    else
+        fTempY = fTempY - iGameLevel;
+
+    oTempVelocity = { fTempX, fTempY };
+
+
     vBallSpriteArray->push_back(new BallSprite(tTempTexture, Object::BALL, oTempVelocity));
 
 }

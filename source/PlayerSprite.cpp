@@ -2,6 +2,7 @@
 
 PlayerSprite::PlayerSprite(Texture2D oSpriteTexture, Object oObjectID)
 	: BaseSprite(oSpriteTexture, oObjectID)
+	, iPlayerScore{0}
 {
 	// Sets initial values for the Player One on import
 	if (oObjectID == Object::PLAYER_ONE_SPRITE)
@@ -105,4 +106,14 @@ void PlayerSprite::Update()
 	{
 		this->SetPosition(Point2D((float)GetScreenWidth() - this->GetTexture().width, this->GetPosition().getYPos()));
 	}
+}
+
+int PlayerSprite::GetPlayerScore()
+{
+	return this->iPlayerScore;
+}
+
+void PlayerSprite::SetPlayerScore(int iScore)
+{
+	this->iPlayerScore = iScore;
 }

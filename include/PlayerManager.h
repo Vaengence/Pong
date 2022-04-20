@@ -14,8 +14,10 @@ public:
 	~PlayerManager();
 
 	void CreatePlayers(int iNumPlayers);
+	void PlayerScored(Object oPlayer);
 
-	std::vector<PlayerSprite*>* GetPlayers();
+	//std::vector<PlayerSprite*>* GetPlayers();
+	std::unordered_map<Object, PlayerSprite*>* GetPlayers();
 
 	void InitialiseLevel(int level) override;
 	void Update() override;
@@ -24,7 +26,9 @@ public:
 
 private:
 
-	std::vector<PlayerSprite*>* vPlayerSprites;
+	//std::vector<PlayerSprite*>* vPlayerSprites;
+
+	std::unordered_map<Object, PlayerSprite*>* mPlayerSprites;
 	ResourceManager* oResources;
 	int iGameLevel;
 };
