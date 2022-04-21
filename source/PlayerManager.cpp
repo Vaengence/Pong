@@ -40,7 +40,7 @@ void PlayerManager::PlayerScored(Object oPlayer)
 {
 	int oCurrentScore = mPlayerSprites->at(oPlayer)->GetPlayerScore();
 
-	oCurrentScore = oCurrentScore + 10;
+	oCurrentScore = oCurrentScore + 1;
 
 	mPlayerSprites->at(oPlayer)->SetPlayerScore(oCurrentScore);
 }
